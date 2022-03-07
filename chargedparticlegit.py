@@ -25,3 +25,4 @@ class ChargedParticle(Particle):
         return (self.charge*Efield+self.charge*np.cross(self.velocity, Bfield))
 
 """Now I will create a test function to check my class, for this I will open a new file named: "test charged particle.py" """
+"""I need to modify my inheritance furthermore so it replaces the gravitational forces from the particle file with the lorentz force"""

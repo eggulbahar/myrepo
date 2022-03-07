@@ -12,7 +12,7 @@ class Particle:
     acceleration=np.array([0, -10, 0], dtype=float),
     name='Ball',
     mass=1.0,
-    method="Euler-Richardson" 
+    method="Euler-Cromer" 
     ):
     #I am assigning all inputs as data attributes 
         self.position=np.array(position, dtype=float)

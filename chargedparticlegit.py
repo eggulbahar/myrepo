@@ -20,9 +20,15 @@ class ChargedParticle(Particle):
     def __repr__(self):
         return 'Charged Particle: {0}, Mass: {1:12.3e}, Charge: {2:12.3e}, Position: {3}, Velocity: {4}, Acceleration: {5}'.format(
             self.Name,self.mass,self.charge,self.position, self.velocity,self.acceleration)
-    
+ #below I define the Lorentz force, which depends on the variables Efield= electric field and Bfield=magnetic field. I will define the 
+ # fields on another page   
     def LorentzForce(self, Efield, Bfield):
         return (self.charge*Efield+self.charge*np.cross(self.velocity, Bfield))
 
-"""Now I will create a test function to check my class, for this I will open a new file named: "test charged particle.py" """
-"""I need to modify my inheritance furthermore so it replaces the gravitational forces from the particle file with the lorentz force"""
+#Now I will create a test function to check my class, for this I will open a new file named: "test charged particle.py" 
+#I need to modify my inheritance furthermore so it replaces the gravitational forces from the particle file with the lorentz force
+
+#I am going to connect my Lorentz force to the acceleration using the F=ma equation:
+    def Updateacceleration(self, Efield, Bfield):
+        a=self.LorentzForce(Efield, Bfield)/self.mass
+        return a

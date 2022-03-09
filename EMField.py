@@ -1,7 +1,6 @@
 import numpy as np
 import math
 
-
 """Here I will create a class that has my fields, and checks the period and calculates the orbit of the particle. It takes defiitions of 
 variables from the charged particle class."""
 

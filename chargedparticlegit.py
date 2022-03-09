@@ -29,5 +29,4 @@ class ChargedParticle(Particle):
 
 #I am going to connect my Lorentz force to the acceleration using the F=ma equation:
     def Updateacceleration(self, Efield, Bfield):
-        a=self.LorentzForce(Efield, Bfield)/self.mass
-        return a
+        self.acceleration=self.LorentzForce(Efield, Bfield)/self.mass

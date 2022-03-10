@@ -37,6 +37,7 @@ class Particle:
         if self.method=="Euler":
             self.updateEuler(deltaT)
         elif self.method=="Euler-Cromer":
+            
             self.updateECromer(deltaT)
         elif self.method=="Euler-Richardson":
             self.updateERichardson(deltaT, celestialbodies)   
@@ -54,26 +55,16 @@ class Particle:
         newposition=self.position+newvelocity*deltaT
         self.position=newposition
         self.velocity=newvelocity
+       
 
-    def updateERichardson (self, deltaT, celestialbodies):
+    def updateERichardson (self, deltaT):
     #This method updates the velocity and position using the Euler-Richardson method. 
         midself=copy.deepcopy(self)
-        midcelestialbodies=copy.deepcopy(celestialbodies)
         midvelocity=midself.velocity+midself.acceleration*0.5*deltaT #I have calculated the middle point veloicty and position
         midposition=midself.position+0.5*midself.velocity*deltaT
         midself.velocity=midvelocity
         midself.position=midposition
-        for midbody in midcelestialbodies:
-            midvelocity=midbody.velocity+midbody.acceleration*0.5*deltaT
-            midposition=midbody.position+0.5*midbody.velocity*deltaT
-            midbody.velocity=midvelocity
-            midbody.position=midposition
-        midacceleration=0 #I am calculating the middle acceleration using my values for the middle bodies
-        for midbody in midcelestialbodies:
-            middisplacement=-midbody.position+midself.position
-            middistance=np.sqrt(middisplacement[0]**2+middisplacement[1]**2+middisplacement[2]**2)
-            midacceleration+=-midself.G*midbody.mass*(middistance**-3)*middisplacement
-        midself.acceleration=midacceleration
+        midself.acceleration=midself.updateAccelerationLorentz()
         newvelocity=self.velocity+midself.acceleration*deltaT #using the middle values I have worked out the new position and velocity
         newposition=self.position+midself.velocity*deltaT
         self.velocity=newvelocity

@@ -35,8 +35,6 @@ while time<orbitalPeriod:
     ListForValuesForX.append(particle.position[0])
     ListForValuesForY.append(particle.position[1])
 
-
-
 plt.ylim(-10**(-5),10**(-5))
 plt.xlim(-10**(-5),10**(-5))
 plt.plot(ListForValuesForX, ListForValuesForY)

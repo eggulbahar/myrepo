@@ -30,7 +30,7 @@ ListForValuesForY=[]
 time=0
 while time<orbitalPeriod:
     particle.Updateacceleration(Fields.Efield, Fields.Bfield)
-    particle.update(10**(-12), [])
+    particle.update(10**(-12), Fields.Efield, Fields.Bfield)
     time+=10**(-12)
     ListForValuesForX.append(particle.position[0])
     ListForValuesForY.append(particle.position[1])

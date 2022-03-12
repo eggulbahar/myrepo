@@ -12,7 +12,7 @@ class Particle:
     acceleration=np.array([0, -10, 0], dtype=float),
     name='Ball',
     mass=1.0,
-    method="Euler-Cromer" 
+    method="Euler-Richardson" 
     ):
     #I am assigning all inputs as data attributes 
         self.position=np.array(position, dtype=float)
@@ -57,14 +57,25 @@ class Particle:
         self.velocity=newvelocity
        
 
-    def updateERichardson (self, deltaT):
+    def updateERichardson (self, deltaT, celestialbodies):
     #This method updates the velocity and position using the Euler-Richardson method. 
         midself=copy.deepcopy(self)
+        midcelestialbodies=copy.deepcopy(celestialbodies)
         midvelocity=midself.velocity+midself.acceleration*0.5*deltaT #I have calculated the middle point veloicty and position
         midposition=midself.position+0.5*midself.velocity*deltaT
         midself.velocity=midvelocity
         midself.position=midposition
-        midself.acceleration=midself.updateAccelerationLorentz()
+        for midbody in midcelestialbodies:
+            midvelocity=midbody.velocity+midbody.acceleration*0.5*deltaT
+            midposition=midbody.position+0.5*midbody.velocity*deltaT
+            midbody.velocity=midvelocity
+            midbody.position=midposition
+        midacceleration=0 #I am calculating the middle acceleration using my values for the middle bodies
+        for midbody in midcelestialbodies:
+            middisplacement=-midbody.position+midself.position
+            middistance=np.sqrt(middisplacement[0]**2+middisplacement[1]**2+middisplacement[2]**2)
+            midacceleration+=-midself.G*midbody.mass*(middistance**-3)*middisplacement
+        midself.acceleration=midacceleration
         newvelocity=self.velocity+midself.acceleration*deltaT #using the middle values I have worked out the new position and velocity
         newposition=self.position+midself.velocity*deltaT
         self.velocity=newvelocity

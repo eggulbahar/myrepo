@@ -1,13 +1,12 @@
 import numpy as np
-import math
 from matplotlib import pyplot as plt
 from chargedparticlegit import ChargedParticle
 from EMField import EMFields
-import pytest as py
 
 """This is the page where I will test the period of a particle's motion, in this case that of a single proton. I will set my electric field 
 to be 0 and I will have a constant magnetic field in hte z-axis only."""
 
+#below I have defined my particle which is a single proton, with given initial velocity in the x axis
 protonmass=1.6726219*10**(-27)
 protoncharge=1.6*10**(-19)
 particle=ChargedParticle(
@@ -19,16 +18,18 @@ particle=ChargedParticle(
     charge=protoncharge
 )
 
-Fields=EMFields()
+Fields=EMFields() #here I am including my definitionf of the electric and magnetic field from my fields class
+
 orbitalPeriod=Fields.Period(particle)
 print(orbitalPeriod) 
 #Above I am printing the value of the orbital period which gives 6.568370841591752e-08 and I calculate it analytically to compare
-#When I calculate it myself, I get the exact same value, however this is not my official test
+#When I calculate it myself, I get the exact same value, therefore my period is being calculated correctly.
 
-ListForValuesForX=[]
-ListForValuesForY=[]
+ListForValuesForX=[] #list containing my position values of the proton for the x axis
+ListForValuesForY=[] #list containing my position values of the proton for the y axis
 time=0
-while time<orbitalPeriod:
+while time<orbitalPeriod:  
+#here I have created a loop which runs as long as the orbital period during which it updates the acceleration, thus the position of the proton
     particle.Updateacceleration(Fields.Efield, Fields.Bfield)
     particle.update(10**(-12), Fields.Efield, Fields.Bfield)
     time+=10**(-12)
@@ -36,7 +37,7 @@ while time<orbitalPeriod:
     ListForValuesForY.append(particle.position[1])
 
 #below I print out a graph of my proton's movement undre the constant magnetic field with no electric field
-#It should print out a full circle 
+#It should print out a full circle theoretically, which it does 
 plt.ylim(-10**(-5),10**(-5))
 plt.xlim(-10**(-5),10**(-5))
 plt.plot(ListForValuesForX, ListForValuesForY)

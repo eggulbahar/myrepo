@@ -35,11 +35,19 @@ while time<orbitalPeriod:
     ListForValuesForX.append(particle.position[0])
     ListForValuesForY.append(particle.position[1])
 
+#below I print out a graph of my proton's movement undre the constant magnetic field with no electric field
+#It should print out a full circle 
 plt.ylim(-10**(-5),10**(-5))
 plt.xlim(-10**(-5),10**(-5))
 plt.plot(ListForValuesForX, ListForValuesForY)
 plt.show()
 
-    
-
-
+"""Below I am checking that my cirle printed in the graph is a proper circle, by looking at the radii on X and Y axis to see it they are 
+consistent. The print gives:
+-2.0907773745432283e-06 2.090777374949499e-06
+-4.1815547497971884e-06 -8.124185580930228e-16
+2.0907773750014236e-06"""
+print(min(ListForValuesForX), max(ListForValuesForX)) 
+print(min(ListForValuesForY), max(ListForValuesForY)) 
+orbitalradius=Fields.Radius(particle)
+print(orbitalradius)    

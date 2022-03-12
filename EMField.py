@@ -15,8 +15,8 @@ class EMFields():
         self.Efield=np.array(Efield, dtype=float)
 
     def Period(self, chargedparticle):
-        return (2*math.pi*chargedparticle.mass)/(chargedparticle.charge*self.Bfield[2])   
+        return (2*math.pi*chargedparticle.mass)/(chargedparticle.charge*np.linalg.norm(self.Bfield))   
 
     def Radius(self, chargedparticle):
-        return (chargedparticle.mass*chargedparticle.velocity)/(chargedparticle.charge*self.Bfield[2])
+        return (chargedparticle.mass*np.linalg.norm(chargedparticle.velocity))/(chargedparticle.charge*np.linalg.norm(self.Bfield))
 

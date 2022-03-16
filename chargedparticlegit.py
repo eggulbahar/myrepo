@@ -16,9 +16,9 @@ class ChargedParticle(Particle):
         self.charge = charge #here I am defining the charge attribute which is an addition on top of my inheritance
 
 #below I have a special function which defines how to print the attributes of the charged particle
-    def __repr__(self):
+    def __str__(self):
         return 'Charged Particle: {0}, Mass: {1:12.3e}, Charge: {2:12.3e}, Position: {3}, Velocity: {4}, Acceleration: {5}'.format(
-            self.Name,self.mass,self.charge,self.position, self.velocity,self.acceleration)
+            self.name,self.mass,self.charge,self.position, self.velocity,self.acceleration)
  
  #below I define the Lorentz force, which depends on the variables Efield= electric field and Bfield=magnetic field. I will define the 
  # fields on another page   

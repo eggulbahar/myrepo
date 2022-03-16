@@ -25,3 +25,5 @@ class MultipleProtons(ChargedParticle):
         )
         return randomparticle
 
+    def __str__(self):
+        return 'This is a group of {0} protons with random positions and velocities.'.format(self.numberofparticles)

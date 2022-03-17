@@ -16,8 +16,8 @@ class MultipleProtons(ChargedParticle):
     
     #the initial/begining speeds of the protons should be non-relativistic therefore I chose the range to be from 0 to 100 m/s
     def newparticle(self, number):
-        self.velocity=np.array([random.uniform(-10**(-8),10**(-8)), random.uniform(-10**(-8),10**(-8)), 0])
-        self.position=np.array([random.uniform(-1,1), random.uniform(-1,1), 0])
+        self.velocity=np.array([0, random.uniform(-10**(-8),10**(-8)), 0])
+        self.position=np.array([random.uniform(-0.1,0.1), 0, 0])
         randomparticle = ChargedParticle(
             position=self.position,
             velocity=self.velocity,

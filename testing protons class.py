@@ -21,6 +21,8 @@ sortednumbers=sorted(positionvalues)
 mean = statistics.mean(sortednumbers)
 sd = statistics.stdev(sortednumbers)
 
+plt.plot(sortednumbers, norm.pdf(sortednumbers, mean, sd))   
+plt.show()
 
 
 #below I am plotting a distribution graph for the velocity
@@ -46,12 +48,8 @@ while time<1:
     for i in range(groupofprotons.numberofparticles):
         groupofprotons.particles[i].Updateacceleration(Fields.Efield, Fields.Bfield)
         groupofprotons.particles[i].update(10**(-5), Fields.Efield, Fields.Bfield)
-        
-        """print(groupofprotons.particles[i].mass)"""
         ListForValuesFor.append(np.linalg.norm(groupofprotons.particles[i].position))
     time+=10**(-5)
-
-
 
 sortedlistforvalues=sorted(ListForValuesFor)
 mean2 = statistics.mean(sortedlistforvalues)

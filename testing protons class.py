@@ -3,8 +3,10 @@ from matplotlib import pyplot as plt
 import numpy as np
 from scipy.stats import norm
 import statistics
+from EMField import EMFields
 
 groupofprotons=MultipleProtons(numberofparticles=100)
+Fields=EMFields()
 print(groupofprotons)
 print(groupofprotons.particles[0], groupofprotons.particles[1])
 
@@ -18,10 +20,7 @@ sortednumbers=sorted(positionvalues)
 
 mean = statistics.mean(sortednumbers)
 sd = statistics.stdev(sortednumbers)
-plt.ylabel("Fraction of total particles")
-plt.xlabel("Magnitude of the position vector")
-plt.plot(sortednumbers, norm.pdf(sortednumbers, mean, sd))
-plt.show()
+
 
 
 #below I am plotting a distribution graph for the velocity
@@ -40,3 +39,20 @@ plt.show()
 
 #I have transferred the methodolgy of calculating mean and standard deviation, which I tested here, to the particle class
 """After plotting my graphs I notice that the the average particle position is at the middle"""
+
+ListForValuesFor=[] #list containing my position values of the protons
+for i in range(groupofprotons.numberofparticles):
+    groupofprotons.particles[i].Updateacceleration(Fields.Efield, Fields.Bfield)
+    groupofprotons.particles[i].update(10, Fields.Efield, Fields.Bfield)
+    ListForValuesFor.append(np.linalg.norm(groupofprotons.particles[i].position))
+
+sortedlistforvalues=sorted(ListForValuesFor)
+mean2 = statistics.mean(sortedlistforvalues)
+sd2 = statistics.stdev(sortedlistforvalues)
+
+plt.ylabel("Fraction of total particles")
+plt.xlabel("Magnitude of the position vector")
+plt.plot(sortedlistforvalues, norm.pdf(sortedlistforvalues, mean2, sd2))
+plt.plot(sortednumbers, norm.pdf(sortednumbers, mean, sd))   
+plt.show()
+        

@@ -37,9 +37,11 @@ class MultipleProtons(ChargedParticle):
         for i in range(self.numberofparticles):
             valuesposition.append(np.linalg.norm(self.particles[i].position))
             valuesvelocity.append(np.linalg.norm(self.particles[i].velocity))
-        meanp = statistics.mean(valuesposition)
-        sdp = statistics.stdev(valuesposition)
-        meanv=statistics.mean(valuesvelocity)
-        sdv=statistics.stdev(valuesvelocity)
-        return meanp, sdp, meanv, sdv
+        sortednumbers=sorted(valuesposition)
+        sortednumbersvelocity=sorted(valuesvelocity)
+        meanp = statistics.mean(sortednumbers)
+        sdp = statistics.stdev(sortednumbers)
+        meanv=statistics.mean(sortednumbersvelocity)
+        sdv=statistics.stdev(sortednumbersvelocity)
+        return [meanp, sdp, meanv, sdv, sortednumbers, sortednumbersvelocity]
 

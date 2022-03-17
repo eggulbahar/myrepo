@@ -1,6 +1,8 @@
 import numpy as np
 from chargedparticlegit import ChargedParticle
 import random 
+from scipy.stats import norm
+import statistics
 
 class MultipleProtons(ChargedParticle):
     def __init__(self, position=np.array( [0,0,0],dtype =float), velocity=np.array( [0,0,0],dtype =float), acceleration=np.array
@@ -27,3 +29,17 @@ class MultipleProtons(ChargedParticle):
 
     def __str__(self):
         return 'This is a group of {0} protons with random positions and velocities.'.format(self.numberofparticles)
+
+#below I have added a method calculating the mean and the standard deviation of the absolute values of the velocity and position of the protons
+    def meancalculation(self):
+        valuesposition=[]
+        valuesvelocity=[]
+        for i in range(self.numberofparticles):
+            valuesposition.append(np.linalg.norm(self.particles[i].position))
+            valuesvelocity.append(np.linalg.norm(self.particles[i].velocity))
+        meanp = statistics.mean(valuesposition)
+        sdp = statistics.stdev(valuesposition)
+        meanv=statistics.mean(valuesvelocity)
+        sdv=statistics.stdev(valuesvelocity)
+        return meanp, sdp, meanv, sdv
+

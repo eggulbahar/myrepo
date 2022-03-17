@@ -23,6 +23,7 @@ plt.xlabel("Magnitude of the position vector")
 plt.plot(sortednumbers, norm.pdf(sortednumbers, mean, sd))
 plt.show()
 
+
 #below I am plotting a distribution graph for the velocity
 velocityvalues=[]
 for i in range(groupofprotons.numberofparticles):
@@ -36,3 +37,5 @@ plt.ylabel("Fraction of total particles")
 plt.xlabel("Magnitude of the velocity vector")
 plt.plot(sortednumbersvelocity, norm.pdf(sortednumbersvelocity, mean1, sd1))
 plt.show()
+
+#I have transferred the methodolgy of calculating mean and standard deviation, which I tested here, to the particle class

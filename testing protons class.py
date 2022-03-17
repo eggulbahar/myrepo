@@ -39,3 +39,4 @@ plt.plot(sortednumbersvelocity, norm.pdf(sortednumbersvelocity, mean1, sd1))
 plt.show()
 
 #I have transferred the methodolgy of calculating mean and standard deviation, which I tested here, to the particle class
+"""After plotting my graphs I notice that the the average particle position is at the middle"""

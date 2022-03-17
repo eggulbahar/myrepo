@@ -11,7 +11,7 @@ class ChargedParticle(Particle):
 
 #below I have defined a function within my new class which initializes data attributes and a method for the charged particle, it takes 
 # everything from the parent class of particle, through the useage of inheritance and adds a new attribute of charge
-    def __init__(self, position=np.array( [0,0,0],dtype =float), velocity=np.array( [0,0,0],dtype =float), acceleration=np.array( [0, -10,0],dtype =float), name='Ball', mass=1.0, method="Euler-Richardson", charge=1.0):
+    def __init__(self, position=np.array( [0,0,0],dtype =float), velocity=np.array( [0,0,0],dtype =float), acceleration=np.array( [0, -10,0],dtype =float), name='Ball', mass=1.0, method="Euler-Cromer", charge=1.0):
         super().__init__(position=position, velocity=velocity, acceleration=acceleration, name=name, mass=mass, method=method)
         self.charge = charge #here I am defining the charge attribute which is an addition on top of my inheritance
 
@@ -23,13 +23,18 @@ class ChargedParticle(Particle):
  #below I define the Lorentz force, which depends on the variables Efield= electric field and Bfield=magnetic field. I will define the 
  # fields on another page   
     def LorentzForce(self, Efield, Bfield):
+        """print(self.charge)
+        print(self.velocity)"""
         return (self.charge*Efield+self.charge*np.cross(self.velocity,Bfield))
 
 #Now I will create a test function to check my class, for this I will open a new file named: "test charged particle.py" 
 
 #I am going to connect my Lorentz force to the acceleration using the F=ma equation:
     def Updateacceleration(self, Efield, Bfield):
+        
         self.acceleration=self.LorentzForce(Efield, Bfield)/self.mass
+        
+       
 
     def update(self, deltaT, Efield, Bfield):
     #Here depending on the method that has been stated the correct method to calculate the velocity and position are assigned

@@ -8,7 +8,7 @@ class EMFields():
     #below I am identifying the inputs to my class, which are the magnetic and electric field
     def __init__(
     self,
-    Bfield=np.array([0,0,10], dtype=float),
+    Bfield=np.array([0,0,10**(-7)], dtype=float),
     Efield=np.array([0,0,0], dtype=float)
     ):
         self.Bfield=np.array(Bfield, dtype=float)

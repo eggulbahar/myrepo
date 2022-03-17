@@ -6,7 +6,7 @@ import statistics
 
 class MultipleProtons(ChargedParticle):
     def __init__(self, position=np.array( [0,0,0],dtype =float), velocity=np.array( [0,0,0],dtype =float), acceleration=np.array
-    ( [0, -10,0],dtype =float), name='proton', protonmass=1.6726219*10**(-27), method="Euler-Richardson", protoncharge=1.6*10**(-19), numberofparticles=5):
+    ( [0, -10,0],dtype =float), name='proton', protonmass=1.6726219*10**(-27), method="Euler-Cromer", protoncharge=1.6*10**(-19), numberofparticles=5):
         super().__init__(position=position, velocity=velocity, acceleration=acceleration, name=name, mass=protonmass, method=method, charge=protoncharge)
         self.numberofparticles=numberofparticles
         self.particles=[]
@@ -16,8 +16,8 @@ class MultipleProtons(ChargedParticle):
     
     #the initial/begining speeds of the protons should be non-relativistic therefore I chose the range to be from 0 to 100 m/s
     def newparticle(self, number):
-        self.velocity=np.array([random.uniform(-100,100), random.uniform(-100,100), 0])
-        self.position=np.array([random.uniform(-100,100), random.uniform(-100,100), 0])
+        self.velocity=np.array([random.uniform(-10**(-8),10**(-8)), random.uniform(-10**(-8),10**(-8)), 0])
+        self.position=np.array([random.uniform(-1,1), random.uniform(-1,1), 0])
         randomparticle = ChargedParticle(
             position=self.position,
             velocity=self.velocity,

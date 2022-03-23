@@ -45,3 +45,18 @@ class MultipleProtons(ChargedParticle):
         sdv=statistics.stdev(sortednumbersvelocity)
         return [meanp, sdp, meanv, sdv, sortednumbers, sortednumbersvelocity]
 
+    def meanKE(self):
+            KE=0. 
+            for i in range(self.numberofparticles):
+                #speed = (np.linalg.norm(self.particles[i].velocity)
+                KE+=self.particles[i].kineticEnergy()
+            KE/=self.numberofparticles
+            return KE
+
+    def meanSpeed(self):
+        Speed= 0.
+        for i in range(self.numberofparticles):
+            Speed += np.linalg.norm(self.particles[i].velocity)
+            
+        Speed/=self.numberofparticles
+        return Speed

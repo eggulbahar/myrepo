@@ -53,20 +53,17 @@ speedSeries = [groupofprotons.meanSpeed(),]
 
 
 while time<1:
-    #print(time)
+    
     for i in range(groupofprotons.numberofparticles):
-        # groupofprotons.particles[i].Updateacceleration(Fields.Efield, Fields.Bfield)
+        
         groupofprotons.particles[i].update(1e-5, Fields.Efield, Fields.Bfield)
         
-        """print(groupofprotons.particles[i].mass)"""
-        #ListForValuesFor.append(np.linalg.norm(groupofprotons.particles[i].position))
     time+=10**(-5)
     counter+=1 
     if (counter%1000==0): 
         print(time,groupofprotons.meanKE(),groupofprotons.meanSpeed())
         timeSeries.append(time)
         speedSeries.append(groupofprotons.meanSpeed())
-
 
 
 x = np.array(timeSeries, dtype=float)
@@ -80,16 +77,3 @@ plt.xlabel("Time (s)")
 
 plt.show()
 
-'''
-sortedlistforvalues=sorted(ListForValuesFor)
-mean2 = statistics.mean(sortedlistforvalues)
-sd2 = statistics.stdev(sortedlistforvalues)
-print(mean2,sd2)
-print(mean,sd)
-plt.ylabel("Fraction of total particles")
-plt.xlabel("Magnitude of the position vector")
-plt.plot(sortedlistforvalues, norm.pdf(sortedlistforvalues, mean2, sd2), label="after some time")
-plt.plot(sortednumbers, norm.pdf(sortednumbers, mean, sd), label="original")   
-plt.legend()
-plt.show()
-'''  

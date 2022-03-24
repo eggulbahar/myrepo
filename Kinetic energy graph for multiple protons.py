@@ -16,7 +16,7 @@ while time<1:
         
         groupofprotons.particles[i].update(1e-5, Fields.Efield, Fields.Bfield)
         
-    time+=10**(-5)
+    time+=10**(-3)
     counter+=1 
     if (counter%1000==0): 
         timeSeries.append(time)
@@ -33,3 +33,9 @@ plt.xlabel("Time (s)")
 
 plt.show()
 
+"""When I plot the graph I observe that the fractional deviation is almost 0, which is the value it should have as there's no currently apparent
+electric field. To test conservation of energy and to make sure that it is conserved I am going to increase the time step the update
+runs to see if with more presicion the fractional change will get larger. If that is the case than energy seems to be conserved in my
+simulation.
+Initial time step value= time+=10**(-5)
+Test time step value= time+=10**(-3)"""

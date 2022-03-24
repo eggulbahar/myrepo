@@ -11,7 +11,7 @@ protonmass=1.6726219*10**(-27)
 protoncharge=1.6*10**(-19)
 particle=ChargedParticle(
     position=np.array( [0,0,0],dtype =float),
-    velocity=np.array( [200,0,0],dtype =float),
+    velocity=np.array( [0,1e-3,0],dtype =float),
     acceleration=np.array( [0,0,0],dtype =float),
     name='proton', 
     mass=protonmass,  
@@ -31,15 +31,14 @@ time=0
 while time<orbitalPeriod:  
 #here I have created a loop which runs as long as the orbital period during which it updates the acceleration, thus the position of the proton
     particle.Updateacceleration(Fields.Efield, Fields.Bfield)
-    particle.update(10**(-12), Fields.Efield, Fields.Bfield)
-    time+=10**(-12)
+    particle.update(10**(-5), Fields.Efield, Fields.Bfield)
+    time+=10**(-5)
     ListForValuesForX.append(particle.position[0])
     ListForValuesForY.append(particle.position[1])
 
 #below I print out a graph of my proton's movement undre the constant magnetic field with no electric field
 #It should print out a full circle theoretically, which it does 
-plt.ylim(-10**(-5),10**(-5))
-plt.xlim(-10**(-5),10**(-5))
+
 plt.plot(ListForValuesForX, ListForValuesForY)
 plt.show()
 

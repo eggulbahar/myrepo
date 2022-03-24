@@ -1,6 +1,8 @@
 import numpy as np
 import copy
 import math
+
+from pandas import Period
 from particlegit import Particle
 
 """This is my new class which inherts from my previous particle class, which has defined variables as particle name,
@@ -20,32 +22,32 @@ class ChargedParticle(Particle):
         return 'Charged Particle: {0}, Mass: {1:12.3e}, Charge: {2:12.3e}, Position: {3}, Velocity: {4}, Acceleration: {5}'.format(
             self.name,self.mass,self.charge,self.position, self.velocity,self.acceleration)
  
-    def angularfrequency(Period):
+    def angularfrequency(self, Period):
         return 2*math.pi/Period
          
 
  #below I define the Lorentz force, which depends on the variables Efield= electric field and Bfield=magnetic field. I will define the 
  # fields on another page   
-    def LorentzForce(self, Efield, Bfield, time, partRadius, Period):
-        while abs(self.position[0])<partRadius:
-            Efield=Efield*math.cos(self.angularfrequency(Period)*time)
+    def LorentzForce(self, Efield, Bfield, time, partRadius,Period):
+        if abs(self.position[0])<partRadius:
+            Efield=np.array(Efield*math.cos(self.angularfrequency(Period)*time),dtype=float)
         else:
-            Efield=[0,0,0]
+            Efield=np.array([0,0,0],dtype=float)
         return (self.charge*Efield+self.charge*np.cross(self.velocity,Bfield))
 
 #Now I will create a test function to check my class, for this I will open a new file named: "test charged particle.py" 
 
 #I am going to connect my Lorentz force to the acceleration using the F=ma equation:
-    def Updateacceleration(self, Efield, Bfield):
+    def Updateacceleration(self, Efield, Bfield, time, partRadius, Period):
         
-        self.acceleration=self.LorentzForce(Efield, Bfield)/self.mass
+        self.acceleration=self.LorentzForce(Efield, Bfield, time, partRadius, Period)/self.mass
         
        
 
-    def update(self, deltaT, Efield, Bfield):
+    def update(self, deltaT, Efield, Bfield, time, partRadius, Period):
     #Here depending on the method that has been stated the correct method to calculate the velocity and position are assigned
     #Below I have taken the update function from my previous particle class and overrid it so it applies to the new current situation
-        self.acceleration=self.LorentzForce(Efield, Bfield)/self.mass
+        self.acceleration=self.LorentzForce(Efield, Bfield, time, partRadius, Period)/self.mass
 
         if self.method=="Euler":
             self.updateEuler(deltaT)
@@ -53,9 +55,9 @@ class ChargedParticle(Particle):
             
             self.updateECromer(deltaT)
         elif self.method=="Euler-Richardson":
-            self.updateERichardson(deltaT, Efield, Bfield)
+            self.updateERichardson(deltaT, Efield, Bfield, time, partRadius, Period)
 
-    def updateERichardson (self, deltaT, Efield, Bfield):
+    def updateERichardson (self, deltaT, Efield, Bfield, time, partRadius, Period):
     #This method updates the velocity and position using the Euler-Richardson method. 
     #Below I have taken the method from particle class and overrided it.
         midself=copy.deepcopy(self)
@@ -63,7 +65,7 @@ class ChargedParticle(Particle):
         midposition=midself.position+0.5*midself.velocity*deltaT
         midself.velocity=midvelocity
         midself.position=midposition
-        midself.Updateacceleration(Efield, Bfield)
+        midself.Updateacceleration(Efield, Bfield, time, partRadius, Period)
         newvelocity=self.velocity+midself.acceleration*deltaT #using the middle values I have worked out the new position and velocity
         newposition=self.position+midself.velocity*deltaT
         self.velocity=newvelocity

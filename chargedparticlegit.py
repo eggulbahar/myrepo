@@ -21,8 +21,8 @@ class ChargedParticle(Particle):
             self.name,self.mass,self.charge,self.position, self.velocity,self.acceleration)
  
     def angularfrequency(Period):
-        angularfreq=2*math.pi/Period
-        return angularfreq
+        return 2*math.pi/Period
+         
 
  #below I define the Lorentz force, which depends on the variables Efield= electric field and Bfield=magnetic field. I will define the 
  # fields on another page   

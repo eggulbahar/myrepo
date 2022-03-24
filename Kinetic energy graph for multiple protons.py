@@ -14,9 +14,9 @@ KEseries = [groupofprotons.meanKE(),]
 while time<1:    
     for i in range(groupofprotons.numberofparticles):
         
-        groupofprotons.particles[i].update(1e-5, Fields.Efield, Fields.Bfield)
+        groupofprotons.particles[i].update(10**(-4), Fields.Efield, Fields.Bfield)
         
-    time+=10**(-3)
+    time+=10**(-4)
     counter+=1 
     if (counter%1000==0): 
         timeSeries.append(time)
@@ -26,6 +26,8 @@ x = np.array(timeSeries, dtype=float)
 y = np.array(KEseries, dtype=float)
 
 DeltaY = (y-KEseries[0])/KEseries[0]
+
+print(y)
 
 plt.plot(x,DeltaY)
 plt.ylabel("Fractional Change in Average Kinetic Energy")

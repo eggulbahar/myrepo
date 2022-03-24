@@ -21,13 +21,14 @@ class ChargedParticle(Particle):
             self.name,self.mass,self.charge,self.position, self.velocity,self.acceleration)
  
     def angularfrequency(Period):
-        return 2*math.pi/Period
+        angularfreq=2*math.pi/Period
+        return angularfreq
 
  #below I define the Lorentz force, which depends on the variables Efield= electric field and Bfield=magnetic field. I will define the 
  # fields on another page   
-    def LorentzForce(self, Efield, Bfield, time, partRadius):
-        while abs(self.position)<partRadius:
-            Efield=Efield*math.cos(self.angularfrequency*time)
+    def LorentzForce(self, Efield, Bfield, time, partRadius, Period):
+        while abs(self.position[0])<partRadius:
+            Efield=Efield*math.cos(self.angularfrequency(Period)*time)
         else:
             Efield=[0,0,0]
         return (self.charge*Efield+self.charge*np.cross(self.velocity,Bfield))

@@ -28,7 +28,7 @@ y=[]
 time=0
 counter=0
 while time<1:
-    particle.LorentzForce(Fields.Efield, Fields.Bfield, time, partRadius=partRadius)
+    particle.LorentzForce(Fields.Efield, Fields.Bfield, time, partRadius, orbitalPeriod)
     particle.update(10**(-5), Fields.Efield, Fields.Bfield)
     time+=10**(-5)
     counter+=1

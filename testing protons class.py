@@ -23,26 +23,10 @@ sortednumbers=sorted(positionvalues)
 mean = statistics.mean(sortednumbers)
 sd = statistics.stdev(sortednumbers)
 
-
-
-#below I am plotting a distribution graph for the velocity
-velocityvalues=[]
-for i in range(groupofprotons.numberofparticles):
-    velocityvalues.append(np.linalg.norm(groupofprotons.particles[i].velocity))
-
-sortednumbersvelocity=sorted(velocityvalues)
-
-mean1 = statistics.mean(sortednumbersvelocity)
-sd1 = statistics.stdev(sortednumbersvelocity)
-plt.ylabel("Fraction of total particles")
-plt.xlabel("Magnitude of the velocity vector")
-plt.plot(sortednumbersvelocity, norm.pdf(sortednumbersvelocity, mean1, sd1))
-#plt.show()
-
 #I have transferred the methodolgy of calculating mean and standard deviation, which I tested here, to the particle class
 """After plotting my graphs I notice that the the average particle position is at the middle"""
 
-ListForValuesFor=[] #list containing my position values of the protons
+
 time=0
 
 counter=0

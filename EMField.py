@@ -14,9 +14,6 @@ class EMFields():
         self.Bfield=np.array(Bfield, dtype=float)
         self.Efield=np.array(Efield, dtype=float)
 
-    """zvalues=[]
-    def z():"""
-
     def Period(self, chargedparticle):
         return (2*math.pi*chargedparticle.mass)/(chargedparticle.charge*np.linalg.norm(self.Bfield))   
 

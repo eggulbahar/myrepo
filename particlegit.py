@@ -83,7 +83,7 @@ class Particle:
 
     def kineticEnergy(self):
     #Here I have created a method to calculate the kinetic energy of an object
-        kineticEnergy=self.mass*0.5*np.linalg.norm(self.velocity)**2
+        kineticEnergy=(self.mass*0.5*np.linalg.norm(self.velocity)**2)/(1.602*10**(-19))
         return kineticEnergy
 
     def potentialEnergy(self, celestialbodies):

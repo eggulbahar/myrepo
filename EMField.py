@@ -9,7 +9,7 @@ class EMFields():
     def __init__(
     self,
     Bfield=np.array([0,0,10**(-7)], dtype=float),
-    Efield=np.array([0,1,0], dtype=float)
+    Efield=np.array([0,10**(-30),0], dtype=float)
     ):
         self.Bfield=np.array(Bfield, dtype=float)
         self.Efield=np.array(Efield, dtype=float)

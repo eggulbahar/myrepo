@@ -26,15 +26,29 @@ print(orbitalPeriod)
 
 x=[]
 y=[]
+ts=[0]
+kes=[particle.kineticEnergy()]
 time=0
 counter=0
-while time<1:
-    particle.update(10**(-5), Fields.Efield, Fields.Bfield, time, partRadius, orbitalPeriod)
-    time+=10**(-5)
+while time<5*orbitalPeriod:
+    time+=10**(-3)
+    particle.update(10**(-3), Fields.Efield, Fields.Bfield, time, partRadius)
+    ts.append(time)
+    kes.append(particle.kineticEnergy())
     counter+=1
-    if (counter%1000==0): 
+    if (counter%10==0): 
         x.append(particle.position[0])
         y.append(particle.position[1])
-
+        
+orbitalPeriod=Fields.Period(particle)
+orbitalRadius=Fields.Radius(particle)
+partRadius=orbitalRadius
+print(orbitalRadius)
+print(partRadius)
+print(orbitalPeriod)
+print(kes[0],kes[1])
 plt.plot(x, y)
+plt.show()
+
+plt.plot(ts,kes)
 plt.show()

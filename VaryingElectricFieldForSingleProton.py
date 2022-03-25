@@ -6,9 +6,9 @@ from EMField import EMFields
 protonmass=1.6726219*10**(-27)
 protoncharge=1.6*10**(-19)
 particle=ChargedParticle(
-    position=np.array( [0,0,0],dtype =float),
-    velocity=np.array( [0,1e-3,0],dtype =float),
-    acceleration=np.array( [0,0,0],dtype =float),
+    position=np.array([0,0,0],dtype =float),
+    velocity=np.array([0,1e-3,0],dtype =float),
+    acceleration=np.array([0,0,0],dtype =float),
     name='proton', 
     mass=protonmass,  
     charge=protoncharge
@@ -18,27 +18,26 @@ Fields=EMFields()
 
 orbitalPeriod=Fields.Period(particle)
 orbitalRadius=Fields.Radius(particle)
-partRadius=0.05*orbitalRadius
+Cyclotronradius=0.11
+partRadius=99e-6
 print(orbitalRadius)
 print(partRadius)
 print(orbitalPeriod)
 
 
-x=[]
-y=[]
+x=[particle.position[0]]
+y=[particle.position[1]]
 ts=[0]
 kes=[particle.kineticEnergy()]
 time=0
 counter=0
-while time<5*orbitalPeriod:
-    time+=10**(-3)
-    particle.update(10**(-3), Fields.Efield, Fields.Bfield, time, partRadius)
+while np.linalg.norm(particle.position)<Cyclotronradius:
+    particle.update(5e-12, Fields.Efield, Fields.Bfield, time, partRadius)
+    time+=5e-12
     ts.append(time)
     kes.append(particle.kineticEnergy())
-    counter+=1
-    if (counter%10==0): 
-        x.append(particle.position[0])
-        y.append(particle.position[1])
+    x.append(particle.position[0])
+    y.append(particle.position[1])
         
 orbitalPeriod=Fields.Period(particle)
 orbitalRadius=Fields.Radius(particle)

@@ -31,8 +31,7 @@ class ChargedParticle(Particle):
     def LorentzForce(self, Efield, Bfield, time, partRadius):
         Force=[0,0,0]
         if abs(self.position[1])<partRadius:
-            Force=np.array(Efield*math.cos(self.angularfrequency(Bfield)*time),dtype=float)
-            print(Force)
+            Force=np.array(self.charge*Efield*math.cos(self.angularfrequency(Bfield)*time),dtype=float)#+self.charge*np.cross(self.velocity,Bfield)
         else:
             Force=self.charge*np.cross(self.velocity,Bfield)
         return Force

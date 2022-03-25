@@ -13,7 +13,7 @@ class ChargedParticle(Particle):
 
 #below I have defined a function within my new class which initializes data attributes and a method for the charged particle, it takes 
 # everything from the parent class of particle, through the useage of inheritance and adds a new attribute of charge
-    def __init__(self, position=np.array( [0,0,0],dtype =float), velocity=np.array( [0,0,0],dtype =float), acceleration=np.array( [0, -10,0],dtype =float), name='Ball', mass=1.0, method="Euler-Cromer", charge=1.0):
+    def __init__(self, position=np.array( [0,0,0],dtype =float), velocity=np.array( [0,0,0],dtype =float), acceleration=np.array( [0, -10,0],dtype =float), name='Ball', mass=1.0, method="Euler-Richardson", charge=1.0):
         super().__init__(position=position, velocity=velocity, acceleration=acceleration, name=name, mass=mass, method=method)
         self.charge = charge #here I am defining the charge attribute which is an addition on top of my inheritance
 

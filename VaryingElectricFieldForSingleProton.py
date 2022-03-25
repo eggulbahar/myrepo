@@ -19,35 +19,35 @@ Fields=EMFields()
 orbitalPeriod=Fields.Period(particle)
 orbitalRadius=Fields.Radius(particle)
 Cyclotronradius=0.11
-partRadius=99e-6
-print(orbitalRadius)
+partRadius=1e-4
+"""print(orbitalRadius)
 print(partRadius)
-print(orbitalPeriod)
+print(orbitalPeriod)"""
 
 
 x=[particle.position[0]]
 y=[particle.position[1]]
-ts=[0]
-kes=[particle.kineticEnergy()]
+times=[0]
+KEvalues=[particle.kineticEnergy()]
 time=0
 counter=0
 while np.linalg.norm(particle.position)<Cyclotronradius:
     particle.update(5e-12, Fields.Efield, Fields.Bfield, time, partRadius)
     time+=5e-12
-    ts.append(time)
-    kes.append(particle.kineticEnergy())
+    times.append(time)
+    KEvalues.append(particle.kineticEnergy())
     x.append(particle.position[0])
     y.append(particle.position[1])
         
-orbitalPeriod=Fields.Period(particle)
+"""orbitalPeriod=Fields.Period(particle)
 orbitalRadius=Fields.Radius(particle)
 partRadius=orbitalRadius
 print(orbitalRadius)
 print(partRadius)
 print(orbitalPeriod)
-print(kes[0],kes[1])
+print(kes[0],kes[1])"""
 plt.plot(x, y)
 plt.show()
 
-plt.plot(ts,kes)
+plt.plot(times,KEvalues)
 plt.show()

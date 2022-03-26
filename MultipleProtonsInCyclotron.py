@@ -5,18 +5,16 @@ from EMField import EMFields
 from Protons import MultipleProtons
 
 
-groupofprotons=MultipleProtons(numberofparticles=2)
+groupofprotons=MultipleProtons(numberofparticles=3)
 Fields=EMFields()
-"""print(groupofprotons)
-print(groupofprotons.particles[0], groupofprotons.particles[1])"""
 
 Cyclotronradius=0.11
 partRadius=1e-4
 
 counter=0
 
-positionvaluesX=[[],[]]
-positionvaluesY=[[],[]]
+positionvaluesX=[[],[],[]]
+positionvaluesY=[[],[],[]]
 
 
 for i in range(groupofprotons.numberofparticles):
@@ -40,5 +38,6 @@ plt.ylabel("position in y-axis")
 
 plt.plot(positionvaluesX[0], positionvaluesY[0], label="proton 1")
 plt.plot(positionvaluesX[1], positionvaluesY[1], label="proton 2")
+plt.plot(positionvaluesX[2], positionvaluesY[2], label="proton 3")
 plt.legend()
 plt.show()

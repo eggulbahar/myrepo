@@ -31,20 +31,15 @@ class MultipleProtons(ChargedParticle):
     def __str__(self):
         return 'This is a group of {0} protons with random positions.'.format(self.numberofparticles)
 
-#below I have added a method calculating the mean and the standard deviation of the absolute values of the velocity and position of the protons
-    def meancalculation(self):
+#below I have added a method calculating the mean and the standard deviation of the absolute values of the position of the protons
+    def distributioncalculation(self):
         valuesposition=[]
-        valuesvelocity=[]
         for i in range(self.numberofparticles):
-            valuesposition.append(np.linalg.norm(self.particles[i].position))
-            valuesvelocity.append(np.linalg.norm(self.particles[i].velocity))
+            valuesposition.append(self.particles[i].position[1])
         sortednumbers=sorted(valuesposition)
-        sortednumbersvelocity=sorted(valuesvelocity)
         meanp = statistics.mean(sortednumbers)
         sdp = statistics.stdev(sortednumbers)
-        meanv=statistics.mean(sortednumbersvelocity)
-        sdv=statistics.stdev(sortednumbersvelocity)
-        return [meanp, sdp, meanv, sdv, sortednumbers, sortednumbersvelocity]
+        return [meanp, sdp, sortednumbers]
 
     def meanKE(self):
             KE=0. 

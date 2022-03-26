@@ -35,7 +35,7 @@ class ChargedParticle(Particle):
         else:
             Force=self.charge*np.cross(self.velocity,Bfield)
         return Force
-        """return (self.charge*Efield+self.charge*np.cross(self.velocity,Bfield))"""
+        
 
 #Now I will create a test function to check my class, for this I will open a new file named: "test charged particle.py" 
 

@@ -18,11 +18,13 @@ particle=ChargedParticle(
     charge=protoncharge
 )
 
-Fields=EMFields() #here I am including my definitionf of the electric and magnetic field from my fields class
+Fields=EMFields(
+    Efield=[0,0,0]
+) #here I am including my definition of the electric and magnetic field from my fields class, and I have set my E field to have 0 value
 
 orbitalPeriod=Fields.Period(particle)
 print(orbitalPeriod) 
-#Above I am printing the value of the orbital period which gives 6.568370841591752e-08 and I calculate it analytically to compare
+#Above I am printing the value of the orbital period which gives 4.378913894394501e-08 and I calculate it analytically to compare
 #When I calculate it myself, I get the exact same value, therefore my period is being calculated correctly.
 
 ListForValuesForX=[] #list containing my position values of the proton for the x axis
@@ -30,23 +32,24 @@ ListForValuesForY=[] #list containing my position values of the proton for the y
 time=0
 while time<orbitalPeriod:  
 #here I have created a loop which runs as long as the orbital period during which it updates the acceleration, thus the position of the proton
-    particle.Updateacceleration(Fields.Efield, Fields.Bfield)
-    particle.update(10**(-5), Fields.Efield, Fields.Bfield)
-    time+=10**(-5)
+    particle.update(10**(-10), Fields.Efield, Fields.Bfield, 0, 0)
+    time+=10**(-10)
     ListForValuesForX.append(particle.position[0])
     ListForValuesForY.append(particle.position[1])
 
 #below I print out a graph of my proton's movement undre the constant magnetic field with no electric field
 #It should print out a full circle theoretically, which it does 
 
+plt.xlabel("position in x-axis")
+plt.ylabel("position in y-axis")
 plt.plot(ListForValuesForX, ListForValuesForY)
 plt.show()
 
 """Below I am checking that my cirle printed in the graph is a proper circle, by looking at the radii on X and Y axis to see it they are 
 consistent. The print gives:
--2.0907773745432283e-06 2.090777374949499e-06
--4.1815547497971884e-06 -8.124185580930228e-16
-2.0907773750014236e-06"""
+-5.207037402145237e-18 1.3938521178661169e-11
+-6.9691510183471065e-12 6.9691040619900906e-12
+6.969274090948786e-12"""
 print(min(ListForValuesForX), max(ListForValuesForX)) 
 print(min(ListForValuesForY), max(ListForValuesForY)) 
 orbitalradius=Fields.Radius(particle)

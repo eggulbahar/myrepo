@@ -31,7 +31,7 @@ class ChargedParticle(Particle):
     def LorentzForce(self, Efield, Bfield, time, partRadius):
         Force=[0,0,0]
         if abs(self.position[1])<partRadius:
-            Force=np.array(self.charge*Efield*math.cos(self.angularfrequency(Bfield)*time),dtype=float)#+self.charge*np.cross(self.velocity,Bfield)
+            Force=np.array(self.charge*Efield*math.cos(self.angularfrequency(Bfield)*time)+self.charge*np.cross(self.velocity,Bfield),dtype=float)#+self.charge*np.cross(self.velocity,Bfield)
         else:
             Force=self.charge*np.cross(self.velocity,Bfield)
         return Force
@@ -41,7 +41,7 @@ class ChargedParticle(Particle):
 
 #I am going to connect my Lorentz force to the acceleration using the F=ma equation:
     def Updateacceleration(self, Efield, Bfield, time, partRadius):
-        
+    
         self.acceleration=self.LorentzForce(Efield, Bfield, time, partRadius)/self.mass
         
        

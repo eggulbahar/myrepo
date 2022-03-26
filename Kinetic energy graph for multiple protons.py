@@ -4,7 +4,10 @@ import numpy as np
 from EMField import EMFields
 
 groupofprotons=MultipleProtons(numberofparticles=5)
-Fields=EMFields()
+Fields=EMFields(
+    Bfield=[0,0,10**(-8)],
+    Efield=[0,0,0]
+)
 
 time=0
 counter=0
@@ -14,11 +17,11 @@ KEseries = [groupofprotons.meanKE(),]
 while time<1:    
     for i in range(groupofprotons.numberofparticles):
         
-        groupofprotons.particles[i].update(10**(-4), Fields.Efield, Fields.Bfield)
+        groupofprotons.particles[i].update(10**(-3), Fields.Efield, Fields.Bfield, 0, 1)
         
-    time+=10**(-4)
+    time+=10**(-3)
     counter+=1 
-    if (counter%1000==0): 
+    if (counter%100==0): 
         timeSeries.append(time)
         KEseries.append(groupofprotons.meanKE())
 

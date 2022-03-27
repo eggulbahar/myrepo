@@ -5,7 +5,7 @@ import math
 from pandas import Period
 from particlegit import Particle
 
-"""This is my new class which inherts from my previous particle class, which has defined variables as particle name,
+"""This is my new class which inherits from my previous particle class, which has defined variables as particle name,
 velocity, mass, acceleration, position and the method through some of these are calculated. When inheriting these I have also included a
 new attribute of my particle which is charge."""
 

@@ -32,7 +32,7 @@ for index,currentmethod in enumerate(methods):
         proton.update(10e-10,fields.Efield,fields.Bfield,0,0)
         time+=10e-10
         data[index].append(copy.deepcopy(proton))
-        if currentmethod=='Euler':
+        if currentmethod=='Euler':    #
             times.append(time)
 
 '''

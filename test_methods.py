@@ -13,7 +13,7 @@ fields=EMFields(
 protonmass=1.6726219*10**(-27)
 protoncharge=1.6*10**(-19)
 generalproton=ChargedParticle(
-    position=np.array( [0,1e-11,0],dtype =float),
+    position=np.array( [-0.6e-11,0,0],dtype =float),
     velocity=np.array( [0,1e-3,0],dtype =float),
     acceleration=np.array( [0,0,0],dtype =float),
     name='proton', 
@@ -50,15 +50,61 @@ for j in range(len(methods)):
     for i in range(1,len(times)):
         xs[j].append(data[j][i].position[0])
         ys[j].append(data[j][i].position[1])
-        positions[j].append((np.linalg.norm(data[j][i].position)-np.linalg.norm(data[j][0].position))/(np.linalg.norm(data[j][0].position)))
-        velocities[j].append((np.linalg.norm(data[j][i].velocity)-np.linalg.norm(data[j][0].velocity))/(np.linalg.norm(data[j][0].velocity)))
-        energies[j].append((data[j][i].kineticEnergy()-data[j][0].kineticEnergy())/(data[j][0].kineticEnergy()))
-        momentums[j].append((np.linalg.norm(data[j][i].momentum())-np.linalg.norm(data[j][0].momentum()))/(np.linalg.norm(data[j][0].momentum())))
-        angularmomentums[j].append((np.linalg.norm(data[j][i].angularmomentum())-np.linalg.norm(data[j][0].angularmomentum()))/(np.linalg.norm(data[j][0].angularmomentum())))
+        positions[j].append((abs(np.linalg.norm(data[j][i].position))))
+        velocities[j].append((abs(np.linalg.norm(data[j][i].velocity))))
+        energies[j].append((abs(data[j][i].kineticEnergy())))
+        momentums[j].append((abs(np.linalg.norm(data[j][i].momentum()))))
+        angularmomentums[j].append((abs(np.linalg.norm(data[j][i].angularmomentum()))))
 
-plt.plot(xs[0],ys[0])
-plt.plot(xs[1],ys[1])
-plt.plot(xs[2],ys[2])
-plt.xlabel('position in x-axis')
-plt.ylabel('position in y-axis')
+for i,method in enumerate(methods):
+    plt.plot(xs[i],ys[i],label=method)
+plt.xlabel('position in x-axis (m)')
+plt.ylabel('position in y-axis (m)')
+plt.legend()
 plt.show()
+
+for i,method in enumerate(methods):
+    plt.plot(times[1:len(times)],positions[i],label=method)
+plt.xlabel('Time')
+plt.ylabel('position vector magnitude (m)')
+plt.legend()
+plt.show()
+
+for i,method in enumerate(methods):
+    plt.plot(times[1:len(times)],velocities[i],label=method)
+plt.xlabel('Time')
+plt.ylabel('velocity vector magnitude (m/s)')
+plt.legend()
+plt.show()
+
+for i,method in enumerate(methods):
+    plt.plot(times[1:len(times)],energies[i],label=method)
+plt.xlabel('Time')
+plt.ylabel('Kinetic energy (J)')
+plt.legend()
+plt.show()
+
+for i,method in enumerate(methods):
+    plt.plot(times[1:len(times)],momentums[i],label=method)
+plt.xlabel('Time')
+plt.ylabel('Momentum magnitude (kgm/s)')
+plt.legend()
+plt.show()
+
+for i,method in enumerate(methods):
+    plt.plot(times[1:len(times)],angularmomentums[i],label=method)
+plt.xlabel('Time')
+plt.ylabel('Angular momentum magnitude (kgm^2/s)')
+plt.legend()
+plt.show()
+
+
+def test_method():
+    # 219 timesteps in simulated orbits
+    assert positions[2][218]<=positions[1][218] and positions[2][218]<=positions[0][218]
+    assert velocities[2][218]<=velocities[1][218] and velocities[2][218]<=velocities[0][218]
+    assert energies[2][218]<=energies[1][218] and energies[2][218]<=energies[0][218]
+    assert momentums[2][218]<=momentums[1][218] and momentums[2][218]<=momentums[0][218]
+    assert angularmomentums[2][218]<=angularmomentums[1][218] and angularmomentums[2][218]<=angularmomentums[0][218]
+
+retcode = pytest.main()

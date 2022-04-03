@@ -1,6 +1,7 @@
 
 """this is my original class code from PHYS281, which describes a particle, its position, velocity, acceleration, mass, and name.
-It is capable of updating its acceleration, velocity and position using various numerical methods."""
+It is capable of updating its acceleration, velocity and position using various numerical methods. It also has methods to calculate kinetic
+energy, potential energy, momentum, and angular momentum."""
 import numpy as np
 import copy
 class Particle:
@@ -56,7 +57,8 @@ class Particle:
         self.position=newposition
         self.velocity=newvelocity
        
-
+    #updated comment: the Euler-Richardson method below takes into account the gravity of a third object, which will not be used in the cyclotron
+    #model, therefore while inheriting I simplify this model
     def updateERichardson (self, deltaT, celestialbodies):
     #This method updates the velocity and position using the Euler-Richardson method. 
         midself=copy.deepcopy(self)

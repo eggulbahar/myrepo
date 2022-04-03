@@ -4,9 +4,10 @@ from chargedparticlegit import ChargedParticle
 from EMField import EMFields
 
 """This is the page where I will test the period of a particle's motion, in this case that of a single proton. I will set my electric field 
-to be 0 and I will have a constant magnetic field in hte z-axis only."""
+to be 0 and I will have a constant magnetic field in hte z-axis only. I will also furthermore update the position of this particle and produce
+a graph making sure that it moves in accordance with theoretical expectations."""
 
-#below I have defined my particle which is a single proton, with given initial velocity in the x axis
+#Below I have defined my particle which is a single proton, with given initial velocity in the x axis
 protonmass=1.6726219*10**(-27)
 protoncharge=1.6*10**(-19)
 particle=ChargedParticle(
@@ -20,7 +21,7 @@ particle=ChargedParticle(
 
 Fields=EMFields(
     Efield=[0,0,0]
-) #here I am including my definition of the electric and magnetic field from my fields class, and I have set my E field to have 0 value
+) #Here I am including my definition of the electric and magnetic field from my fields class, and I have set my E field to have 0 value
 
 orbitalPeriod=Fields.Period(particle)
 print(orbitalPeriod) 
@@ -31,13 +32,13 @@ ListForValuesForX=[] #list containing my position values of the proton for the x
 ListForValuesForY=[] #list containing my position values of the proton for the y axis
 time=0
 while time<orbitalPeriod:  
-#here I have created a loop which runs as long as the orbital period during which it updates the acceleration, thus the position of the proton
+#Here I have created a loop which runs as long as the orbital period during which it updates the acceleration, thus the position of the proton
     particle.update(10**(-10), Fields.Efield, Fields.Bfield, 0, 0)
     time+=10**(-10)
     ListForValuesForX.append(particle.position[0])
     ListForValuesForY.append(particle.position[1])
 
-#below I print out a graph of my proton's movement undre the constant magnetic field with no electric field
+#Below I print out a graph of my proton's movement under the constant magnetic field with no electric field
 #It should print out a full circle theoretically, which it does 
 
 plt.xlabel("position in x-axis")

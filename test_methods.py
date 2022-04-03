@@ -4,6 +4,11 @@ from chargedparticlegit import ChargedParticle
 from EMField import EMFields
 import pytest
 import copy
+
+"""Here I am conducting a pytest and comparing the accuracy of all the numerical methods that the code can use. This test is doen for the case
+when ther is no electric field applied and there is only a constant magnetic field present. In this case the velocity and the kinetic energy of the
+particle should always stay the same as there will not be any work done on the particle."""
+
 methods=['Euler','Euler-Cromer','Euler-Richardson']
 data=[[],[],[]]
 times=[]
@@ -32,13 +37,10 @@ for index,currentmethod in enumerate(methods):
         proton.update(10e-10,fields.Efield,fields.Bfield,0,0)
         time+=10e-10
         data[index].append(copy.deepcopy(proton))
-        if currentmethod=='Euler':    #
+        if currentmethod=='Euler':    
             times.append(time)
 
-'''
-filename='testdata.npy'
-np.save(filename,data,allow_pickle=True)
-'''
+
 xs=[[],[],[]]
 ys=[[],[],[]]
 positions=[[],[],[]]

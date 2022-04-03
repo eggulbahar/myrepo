@@ -1,6 +1,6 @@
 import numpy as np
 import copy
-from chargedparticlegit import ChargedParticle
+from oldChargedparticle import ChargedParticle
 import pytest
 """this is a test to check that my inheritance (the inital one) is working, that it takes the methods from the original 
 file and prints calculations"""
@@ -20,7 +20,6 @@ TestChargedParticle.update(10,[])
 print(TestChargedParticle)
 print(TestChargedParticle.velocity)
 
-retcode = pytest.main()
 """I ran the test which calculated not lorentz force but the origical acceleration and velocity due to gravity as I have not changed gravity
 with lorentz force in my inheritance yet. So far I have tested if my simple inheritence is working and I got the result of:
 Particle: proton, Mass: 1.000e+00, Position: [    0. -1000.     0.], Velocity: [   0. -100.    0.], Acceleration: [  0. -10.   0.]   

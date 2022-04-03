@@ -4,6 +4,8 @@ from chargedparticlegit import ChargedParticle
 from EMField import EMFields
 from Protons import MultipleProtons
 
+"""Here I am creating the simulation of the multiple protons (in this case 3) with randomized initial positions inside a cyclotron, with constant magnetic field
+and a varying electric field."""
 
 groupofprotons=MultipleProtons(numberofparticles=3)
 Fields=EMFields()
@@ -11,12 +13,12 @@ Fields=EMFields()
 Cyclotronradius=0.11
 partRadius=1e-4
 
-counter=0
-
 positionvaluesX=[[],[],[]]
 positionvaluesY=[[],[],[]]
 
-
+#The loop below updates the x and y positions of the protons under the presence of the electro-magnetic field. The inner while and if else
+# loops assure that the particle is accelerating and experiences the fields only inside the cyclotron radius boundary. When outside of it the proton
+# reaches constant speed and continues its path in a straigth line.
 for i in range(groupofprotons.numberofparticles):
     time=0
     while np.linalg.norm(groupofprotons.particles[i].position)<1.5*Cyclotronradius:

@@ -7,7 +7,7 @@ file and prints calculations"""
 
 def test_answer():
     assert TestChargedParticle.velocity[1]==-100.
-    assert TestChargedParticle.velocity[0]==1.
+    """assert TestChargedParticle.velocity[0]==1. This is an example tried to make pytest fail."""
 
 TestChargedParticle=ChargedParticle(
     name="proton",

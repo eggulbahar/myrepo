@@ -29,6 +29,7 @@ for i in range(groupofprotons.numberofparticles):
             positionvaluesY[i].append(groupofprotons.particles[i].position[1])
             
         else:
+            groupofprotons.particles[i].acceleration=np.array([0,0,0], dtype=float)
             groupofprotons.particles[i].update(5e-12, [0,0,0], [0,0,0], time, 0)
             time+=5e-12
             positionvaluesX[i].append(groupofprotons.particles[i].position[0])

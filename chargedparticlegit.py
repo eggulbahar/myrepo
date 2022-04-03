@@ -50,7 +50,8 @@ class ChargedParticle(Particle):
     def update(self, deltaT, Efield, Bfield, time, partRadius):
     #Here depending on the method that has been stated the correct method to calculate the velocity and position are assigned
     #Below I have taken the update function from my previous particle class and overrid it so it applies to the new current situation
-        self.acceleration=self.LorentzForce(Efield, Bfield, time, partRadius)/self.mass
+        if np.linalg.norm(Efield)!=0 or np.linalg.norm(Bfield)!=0:
+            self.acceleration=self.LorentzForce(Efield, Bfield, time, partRadius)/self.mass
 
         if self.method=="Euler":
             self.updateEuler(deltaT)
@@ -68,11 +69,12 @@ class ChargedParticle(Particle):
         midposition=midself.position+0.5*midself.velocity*deltaT
         midself.velocity=midvelocity
         midself.position=midposition
-        midself.Updateacceleration(Efield, Bfield, time+0.5*deltaT, partRadius)
+        if np.linalg.norm(Efield)!=0 or np.linalg.norm(Bfield)!=0:
+            midself.Updateacceleration(Efield, Bfield, time+0.5*deltaT, partRadius)
         newvelocity=self.velocity+midself.acceleration*deltaT #using the middle values I have worked out the new position and velocity
         newposition=self.position+midself.velocity*deltaT
         self.velocity=newvelocity
-        self.position=newposition
+        self.position=newposition  
 
     
         

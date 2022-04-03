@@ -5,15 +5,21 @@ from scipy.stats import norm
 import statistics
 from EMField import EMFields
 
+"""Here I am testing some of the characteristics of my multiple protons class. I start by doing a position probability distribution graph,
+ as all the particles start with an intial random y-position. Next I plot the fractional change in mean speed value, to confirm that for the
+ case of 0 electric field and constant magnetic field. The fractional change should be zero as there is no external work put into the 
+ system and the particle is not being accelerated."""
+
 groupofprotons=MultipleProtons(numberofparticles=5)
 Fields=EMFields(
-    Bfield=[0,0,10**(-8)],
-    Efield=[0,0,0]
+    Bfield=[0,0,10**(-8)], 
+    Efield=[0,0,0]  #setting the electric field to be
 )
 """print(groupofprotons)
 print(groupofprotons.particles[0], groupofprotons.particles[1])"""
 
 #trying to plot a distribution graph for position:
+#I use the method defined in the multiple protons class
 
 values=groupofprotons.distributioncalculation()
 plt.xlabel("Start position in y-axis")
@@ -36,14 +42,13 @@ while time<1:
     time+=10**(-3)
     counter+=1 
     if (counter%10==0): 
-        """print(time, groupofprotons.meanSpeed())"""
         timeSeries.append(time)
         speedSeries.append(groupofprotons.meanSpeed())
 
 x = np.array(timeSeries, dtype=float)
 y = np.array(speedSeries, dtype=float)
 
-DeltaY = (y-speedSeries[0])/speedSeries[0]
+DeltaY = (y-speedSeries[0])/speedSeries[0]  #calculating the fractional change in the mean speed
 
 plt.plot(x,DeltaY)
 plt.ylabel("Fractional Change in Average Speed")

@@ -15,7 +15,7 @@ methods=['Euler','Euler-Cromer','Euler-Richardson']
 data=[[],[],[]]
 times=[]
 fields=EMFields(
-    Efield=[0,0,0]                         
+    Efield=[0,0,0]                        
 )
 protonmass=1.6726219*10**(-27)
 protoncharge=1.6*10**(-19)
@@ -120,3 +120,4 @@ def test_method():
     assert energies[2][218]<=energies[1][218] and energies[2][218]<=energies[0][218]
     assert momentums[2][218]<=momentums[1][218] and momentums[2][218]<=momentums[0][218]
     assert angularmomentums[2][218]<=angularmomentums[1][218] and angularmomentums[2][218]<=angularmomentums[0][218]
+

@@ -1,6 +1,5 @@
 import numpy as np
-import copy
-from oldChargedparticle import ChargedParticle
+from chargedparticlegit import ChargedParticle
 import pytest
 """this is a test to check that my inheritance (the inital one) is working, that it takes the methods from the original 
 file and prints calculations"""
@@ -15,7 +14,7 @@ TestChargedParticle=ChargedParticle(
     method="Euler-Cromer" 
     )
 
-TestChargedParticle.update(10,[])
+TestChargedParticle.update(10,[0,0,0], [0,0,0], 0, 0)
 
 print(TestChargedParticle)
 print(TestChargedParticle.velocity)

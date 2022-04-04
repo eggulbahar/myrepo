@@ -36,8 +36,9 @@ while np.linalg.norm(particle.position)<Cyclotronradius:
     speed.append(np.linalg.norm(particle.velocity))
     angmomentum.append(np.linalg.norm(particle.angularmomentum()))
 
-#This will print the final velocity in terms of c
+#This will print the final velocity in terms of c and kinetic energy in terms of eV
 print(speed[len(speed)-1]/(2.9979*10**(8)))
+print(KEvalues[-1])
 
 #Below are my plotting functions:
 plt.xlabel("Time (s)")

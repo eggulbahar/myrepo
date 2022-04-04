@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from chargedparticlegit import ChargedParticle
 from EMField import EMFields
 
-"""Here I am doing a pytest to check that ebery time my proton passes the gap it always gains the same amount of kinetic energy."""
+"""Here I am doing a pytest to check that every time my proton passes the gap it always gains the same amount of kinetic energy."""
 
 #Below I have defined my particle as a proton
 protonmass=1.6726219*10**(-27)

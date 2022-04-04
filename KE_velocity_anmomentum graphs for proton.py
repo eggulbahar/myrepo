@@ -28,7 +28,6 @@ KEvalues=[particle.kineticEnergy()]
 speed=[np.linalg.norm(particle.velocity)]
 angmomentum=[np.linalg.norm(particle.angularmomentum())]
 time=0
-counter=0
 while np.linalg.norm(particle.position)<Cyclotronradius:
     particle.update(5e-12, Fields.Efield, Fields.Bfield, time, partRadius)
     time+=5e-12

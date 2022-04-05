@@ -4,7 +4,7 @@ import random
 from scipy.stats import norm
 import statistics
 
-"""Here I have created a class which defines multiple particles for the simulation. It generates particles with rnadom y-position, which
+"""Here I have created a class which defines multiple particles for the simulation. It generates particles with random y-position, which
 will be in the boundary of the slit. This class furthermore can calculate the varibles needed for a distribution function of the randomized
  initial positions of the protons (such as mean, and standard deviation), mean kinetic energy and mean speed."""
 

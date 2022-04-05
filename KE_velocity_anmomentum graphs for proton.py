@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from chargedparticlegit import ChargedParticle
 from EMField import EMFields
 
-"""This page produces graphs of velocity, kinetic energy and angular momentum as a function of time for a proton inside a cyclotron"""
+"""This page produces graphs of velocity, kinetic energy and angular momentum magnitude as a function of time for a proton inside a cyclotron"""
 
 #Below I have defined my particle as a proton
 protonmass=1.6726219*10**(-27)
@@ -52,6 +52,6 @@ plt.plot(times, speed)
 plt.show()
 
 plt.xlabel("Time (s)")
-plt.ylabel("Angular Momentum (Js)")
+plt.ylabel("Angular Momentum Magnitude(Js)")
 plt.plot(times, angmomentum)
 plt.show()

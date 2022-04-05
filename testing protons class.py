@@ -10,7 +10,7 @@ from EMField import EMFields
  case of 0 electric field and constant magnetic field. The fractional change should be zero as there is no external work put into the 
  system and the particle is not being accelerated."""
 
-groupofprotons=MultipleProtons(numberofparticles=5)
+groupofprotons=MultipleProtons(numberofparticles=5) #change the number of particles to 100 when doing the distribution density graph for smoother results
 Fields=EMFields(
     Bfield=[0,0,10**(-8)], 
     Efield=[0,0,0]  #setting the electric field to be

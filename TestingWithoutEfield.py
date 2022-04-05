@@ -4,7 +4,7 @@ from chargedparticlegit import ChargedParticle
 from EMField import EMFields
 
 """This is the page where I will test the period of a particle's motion, in this case that of a single proton. I will set my electric field 
-to be 0 and I will have a constant magnetic field in hte z-axis only. I will also furthermore update the position of this particle and produce
+to be 0 and I will have a constant magnetic field in the z-axis only. I will also furthermore update the position of this particle and produce
 a graph making sure that it moves in accordance with theoretical expectations."""
 
 #Below I have defined my particle which is a single proton, with given initial velocity in the x axis

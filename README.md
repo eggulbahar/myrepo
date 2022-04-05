@@ -3,13 +3,14 @@ There are 4 classes that the simulation uses in total, which are the files: part
 
 "particlegit" is the file with my original Particle class created for PHYS281 project, which contains velocity and acceleration update methods for Euler, Euler-Cromer, and Euler Richardson. The class can update kinetic energy, momentum, angular momentum, and contains other methods, which will not be needed for this project.
 
-"chargedparticlegit" is the field with the ChargedParticle class, which inherits from Particle and introduces a new attribute of charge to the particle/object. This class can update angular frequency, which is used to update Lorentz force. The update function and Updateacceleration functions are changed for this class, where it becomes in terms of Lorentz force. Should be noted that the Lorentz force calculates an oscillating electric field (which oscillates for every half period) for certain y-position limits named partRadius.
+"chargedparticlegit" is the file with the ChargedParticle class, which inherits from Particle and introduces a new attribute of charge to the particle/object. This class can update angular frequency, which is used to update Lorentz force. The update function and Updateacceleration functions are changed for this class, where it becomes in terms of Lorentz force. Should be noted that the Lorentz force calculates an oscillating electric field (which oscillates for every half period) for certain y-position limits named partRadius.
 
 "EMField" is the file with the EMFields class, which defines the electric and magnetic field, giving them initial values. The Lorentz force method from the ChargedParticle class will need to use this class' attributes to be able to update position, velocity and etc. The class contains methods defining orbital radius and period of the particle motion.
 
 "Protons" is the file containing the MultipleProtons class. The class generates multiple protons, with randomized initial y-position (which still is within the limits of the slit). The class has methods calculating the mean speed, mean kinetic energy, and the mean and the standard deviation of the absolute values of the position of the protons.
 
 Suggested order to look at the files:
+All of these files need to import ChargedParticle, EMfields classes and when needed MultipleProtons class, after which they can be run directly.
 
 "TestingWithoutEfield" is the file where I set the electric field to be 0 and only have a constant magnetic field in z-direction, and update the particle for 1 orbital period. A position graph is printed for a single proton showing that it does a full complete circle.
 
